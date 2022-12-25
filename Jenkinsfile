@@ -1,9 +1,10 @@
 pipeline {
-    agent  {
-                  docker { image 'node:16.13.1-alpine' }
-              }
+    agent  any
+    tools{
+        maven 'M2_HOME'
+    }
     stages {
-        stage('Create Package') {
+        stage('Maven Build Package') {
             steps {
                 bat 'mvn package'
             }
