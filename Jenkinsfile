@@ -12,7 +12,9 @@ pipeline {
         stage('Create Docker Image'){
             steps{
                 script{
-                    sh 'docker build -t kinnari92/achistarimage .'
+                    withCredentials([string(credentialsId: 'dockeruser', variable: 'dockeruser')]) {
+                        sh 'docker build -t ${dockeruser}/achistarimage .'
+                    }                    
                 }
             }
         }
