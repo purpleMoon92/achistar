@@ -9,5 +9,14 @@ pipeline {
                 sh 'mvn package'
             }
         }
+        stage('Create Docker Image'){
+            steps{
+                script{
+                    withCredentials([string(credentialsId: 'dockerHubUsername', variable: 'dockerHubUser')]) {
+                        sh 'docker build -t ${dockerHubUser}/devops-integration .'
+                    }
+                }
+            }
+        }
     }
 }
