@@ -20,8 +20,8 @@ pipeline {
             steps{
                 script{
                     withCredentials([string(credentialsId: 'dockeruser', variable: 'dockeruser'), string(credentialsId: 'dockerpwd', variable: 'dockerpwd')]) {
-                        sh 'docker login -u ${dockeruser} -p ${dockerpwd}'}
-                    sh 'docker push ${dockeruser}/achistarimage'
+                        sh 'docker login -u ${dockeruser} -p ${dockerpwd}'
+                        sh 'docker push ${dockeruser}/achistarimage'
                     }
                 }
             }
