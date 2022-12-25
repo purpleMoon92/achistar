@@ -28,5 +28,16 @@ pipeline {
                 }
             }
         }
+        stage('Run Docker container using Image from DockerHub '){
+            steps{
+                script{
+                    withCredentials([string(credentialsId: 'dockeruser', variable: 'dockeruser'), string(credentialsId: 'dockerpwd', variable: 'dockerpwd')]) {
+                        sh 'docker login -u ${dockeruser} -p ${dockerpwd}'
+                        sh 'docker pull ${dockeruser}/achistarimage:latest'
+                        sh 'docker run -it --name c01 ${dockeruser}/achistarimage /bin/bash'
+                    }
+                }
+            }
+        }
     }
 }
