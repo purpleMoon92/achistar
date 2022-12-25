@@ -13,7 +13,7 @@ pipeline {
             steps{
                 script{
                     withCredentials([string(credentialsId: 'dockerHubUsername', variable: 'dockerHubUser')]) {
-                        sh 'docker build -t kinnari92/achistarimage .'
+                        sh 'docker build -t ${dockerHubUser}/achistarimage .'
                     }
                 }
             }
