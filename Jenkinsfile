@@ -1,8 +1,10 @@
-pipeline{
+pipeline {
     agent any
-    stage('Package'){
-        steps{
-        sh 'mvn package'
+    stages {
+        stage('Create Package') {
+            steps {
+                sh 'mvn package'
+            }
         }
     }
 }
